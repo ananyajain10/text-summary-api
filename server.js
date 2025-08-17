@@ -10,12 +10,12 @@ const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(cors({
-  origin: [ 'http://localhost:8080'],
+  origin: [ 'https://prompt-paraphrase-pro.vercel.app/', 'http://localhost:8080'],
   credentials: true
 }));
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Origin", "https://prompt-paraphrase-pro.vercel.app/, http://localhost:8080");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
