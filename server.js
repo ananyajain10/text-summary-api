@@ -10,7 +10,7 @@ const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(cors({
-  origin: [ 'https://prompt-paraphrase-pro.vercel.app/', 'http://localhost:8080'],
+  origin: [ 'https://prompt-paraphrase-pro.vercel.app/'],
   credentials: true
 }));
 
