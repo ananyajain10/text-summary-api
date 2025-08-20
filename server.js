@@ -3,22 +3,26 @@ const multer = require('multer');
 const cors = require('cors');
 const pdfParse = require('pdf-parse');
 const sendMail = require('./mailer'); 
-
 require("dotenv").config();
 
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
+const allowedOrigins = [
+  "https://prompt-paraphrase-pro.vercel.app",
+  "http://localhost:8080"
+];
+
 app.use(cors({
-  origin: [ 'https://prompt-paraphrase-pro.vercel.app/'],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, origin);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://prompt-paraphrase-pro.vercel.app/, http://localhost:8080");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.use(express.json());
 
