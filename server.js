@@ -10,7 +10,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 const allowedOrigins = [
   "https://prompt-paraphrase-pro.vercel.app",
-  "http://localhost:8080"
+  "http://localhost:8080",
+  "http://localhost:8000"
 ];
 
 app.use(cors({
